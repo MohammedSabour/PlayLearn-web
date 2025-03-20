@@ -1,4 +1,11 @@
-<div>
+<div wire:poll.1ms>
+    <x-slot name="header">
+        <div class="text-2xl font-bold text-quiz-primary">
+            PlayLearn
+        </div>
+        @livewire('components.atoms.end-session-button', ['sessionId' => $session->id])
+    </x-slot>
+
     <div class="flex-1 container max-w-4xl mx-auto p-4">
         <div class="quiz-gradient rounded-2xl p-6 md:p-8 space-y-8 shadow-xl">
             <!-- Join Code Section -->
@@ -54,14 +61,17 @@
             </div>
             <!-- Action Buttons -->
             <div class="flex flex-col gap-4">
-                <button class="w-full bg-quiz-primary text-white py-4 px-8 rounded-xl font-semibold hover:opacity-90 transition-opacity">
+                <button wire:click="startGame" class="w-full bg-quiz-primary text-white py-4 px-8 rounded-xl font-semibold hover:opacity-90 transition-opacity">
                     COMMENCEZ MAINTENANT
                 </button>
-                {{-- <div class="text-center">
+                @if ($errorMessage)
+                    <p class="p-2 text-red-500 text-xs italic">{{ $errorMessage }}</p>
+                @endif
+                <!-- <div class="text-center">
                     <button class="text-sm text-muted-foreground hover:text-white transition-colors">
                         Partager via...
                     </button>
-                </div> --}}
+                </div> -->
             </div>
         </div>
     </div>

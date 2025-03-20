@@ -18,6 +18,8 @@
         @livewireStyles
     </head>
     <body>
+        <livewire:components.organismes.nav-bar />
+        
         <div class="font-sans text-gray-900 antialiased">
             {{ $slot }}
         </div>

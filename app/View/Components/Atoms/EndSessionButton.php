@@ -1,19 +1,17 @@
 <?php
 
-namespace App\View\Components\Organismes;
+namespace App\View\Components\Atoms;
 
-use App\Models\GameSession;
 use Livewire\Component;
+use App\Models\GameSession;
 
-class NavBarGame extends Component
+class EndSessionButton extends Component
 {
     public $sessionId;
 
-    public function mount()
+    public function mount($sessionId)
     {
-        $this->sessionId = GameSession::where('status', 'waiting')
-            ->latest()
-            ->value('id');
+        $this->sessionId = $sessionId;
     }
 
     public function endSession()
@@ -21,13 +19,13 @@ class NavBarGame extends Component
         $session = GameSession::find($this->sessionId);
 
         if ($session && $session->status !== 'finished') {
-            $session->endSession();
+            $session->update(['status' => 'finished']);
             return redirect()->route('filament.admin.resources.quizzes.index');
         }
     }
 
     public function render()
     {
-        return view('components.organismes.nav-bar-game');
+        return view('components.atoms.end-session-button');
     }
 }

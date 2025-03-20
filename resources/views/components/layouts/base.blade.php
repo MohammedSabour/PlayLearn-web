@@ -1,7 +1,4 @@
-<div>
-    {{-- Do your work, then step back. --}}
-</div>
-
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -9,10 +6,23 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>PlayLearn</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @livewireStyles
 </head>
 
 <body>
-    <livewire:components.organismes.nav-bar-game />
-    {{ $slot }}
+    <!-- Page Heading -->
+    @if (isset($header))
+        <header class="fixed top-0 left-0 right-0 p-4 glass animate-fade-in z-50">
+            <div class="container mx-auto flex justify-between items-center">
+                {{ $header }}
+            </div>
+        </header>
+    @endif
+
+    <main class="pt-32">
+        {{ $slot }} 
+    </main>
+
+    @livewireScripts
 </body>
 </html>

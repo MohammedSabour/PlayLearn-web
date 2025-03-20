@@ -67,8 +67,8 @@ class User extends Authenticatable
      */
     public function sessions(): BelongsToMany
     {
-        return $this->belongsToMany(Session::class, 'session_joueur')
-                    ->withPivot('is_guest', 'joined_at')
+        return $this->belongsToMany(GameSession::class, 'session_joueur')
+                    ->withPivot('player_name','is_guest', 'joined_at')
                     ->withTimestamps();
     }
 

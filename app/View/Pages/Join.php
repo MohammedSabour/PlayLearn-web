@@ -17,22 +17,23 @@ class Join extends Component
                                 ->whereIn('status', ['waiting'])
                                 ->first();
         if (!$session) {
-            session()->flash('error', 'Code d\'adhésion invalide');
+            session()->flash('error', 'Code de jeu invalide');
             return;
         }
-
-        if (Auth::check()) {
+        /* if (Auth::check()) {
             $player = Auth::user();
             $session->players()->attach($player->id, [
                 'is_guest' => false,
                 'joined_at' => now()
             ]);
-            return redirect()->route('game.preplay', ['session' => $session->id]);
+            return redirect()->route('game.preplay', ['sessionId' => $session->id]);
 
         } else {
             return redirect()->route('player.name', ['session' => $session->id]);
-        }
+        } */
+       return redirect()->route('game.preplay', ['sessionId' => $session->id]);
     }
+    
     public function render()
     {
         return view('pages.join');

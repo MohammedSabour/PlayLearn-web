@@ -32,7 +32,7 @@ class GameSession extends Model
     public function players(): BelongsToMany
     {
         return $this->belongsToMany(User::class, 'session_joueur', 'id_session', 'id_user')
-                    ->withPivot('is_guest', 'joined_at')
+                    ->withPivot('player_name','is_guest', 'joined_at')
                     ->withTimestamps();
     }
 

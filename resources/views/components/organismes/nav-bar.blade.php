@@ -1,4 +1,4 @@
-<nav class="fixed top-0 left-0 right-0 bg-white/90 backdrop-blur-sm z-50 border-b">
+<nav class="fixed top-0 left-0 right-0 bg-white/90 backdrop-blur-sm z-50">
     <div class="container mx-auto px-4">
         <div class="flex items-center justify-between h-16">
             <div class="flex items-center">

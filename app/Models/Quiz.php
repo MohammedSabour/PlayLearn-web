@@ -29,6 +29,6 @@ class Quiz extends Model
 
     public function sessions(): HasMany
     {
-        return $this->hasMany(Session::class, 'id_quiz');
+        return $this->hasMany(GameSession::class, 'id_quiz');
     }
 }

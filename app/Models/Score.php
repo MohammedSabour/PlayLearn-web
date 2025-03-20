@@ -17,6 +17,10 @@ class Score extends Model
         'completed_at',
     ];
 
+    protected $casts = [
+        'score' => 'integer',
+    ];
+
     public function player(): BelongsTo
     {
         return $this->belongsTo(User::class, 'id_user');
@@ -24,6 +28,6 @@ class Score extends Model
 
     public function session(): BelongsTo
     {
-        return $this->belongsTo(Session::class, 'id_session');
+        return $this->belongsTo(GameSession::class, 'id_session');
     }
 }

@@ -13,6 +13,7 @@ class SessionJoueur extends Pivot
     protected $fillable = [
         'id_session',
         'id_user',
+        'player_name',
         'is_guest',
         'joined_at'
     ];

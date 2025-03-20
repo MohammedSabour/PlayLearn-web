@@ -21,7 +21,7 @@ class Submission extends Model
 
     public function session(): BelongsTo
     {
-        return $this->belongsTo(Session::class, 'id_session');
+        return $this->belongsTo(GameSession::class, 'id_session');
     }
 
     public function player(): BelongsTo
