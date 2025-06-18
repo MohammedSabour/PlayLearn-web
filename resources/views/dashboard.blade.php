@@ -6,40 +6,13 @@
                 <a href="{{route('join')}}" class="font-bold text-2xl text-brand text-[#1b37b2] tracking-tight transition-all duration-300 hover:opacity-90">
                     PlayLearn
                 </a>
-
-                <!-- Search Bar -->
-                <div class="flex items-center gap-2 px-4 py-2 bg-gray-100 rounded-full transition-all duration-300 hover:bg-gray-200">
-                    <svg class="h-4 w-4 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-line join="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                    </svg>
-                    <input type="text" placeholder="Trouver un jeu" class="h-4 bg-transparent border-none outline-none w-full text-sm placeholder:text-gray-400">
-                </div>
             </div>
-
-            <!-- Navigation Items -->
-            <nav class="hidden md:flex items-center gap-4">
-                <a href="/" class="nav-item active">
-                    <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-                    </svg>
-                    <span>Accueil</span>
-                </a>
-                <a href="" class="nav-item">
-                    <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-                    </svg>
-                    <span>Activité</span>
-                </a>
-            </nav>
 
             <!-- Create Quiz Button -->
             <div class="flex items-center gap-4">
-                <a href="{{ route('filament.admin.resources.quizzes.create') }}"
+                <a href="{{ route('session.start') }}"
                     class="flex items-center gap-2 px-4 py-2 bg-[#3776fa] text-white font-medium rounded-full transition-all duration-300 hover:bg-[#a4caff]">
-                    <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
-                    </svg>
-                    Créer un jeu
+                    New session 
                 </a>
 
                 <x-dropdown align="right" width="48">
@@ -87,11 +60,24 @@
         </div>
     </x-slot>
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-                
-            </div>
+    <div class="pt-32 px-4 pb-16">
+        <div class="max-w-7xl mx-auto">
+            <!-- Home Page Content -->
+            <section class="mt-12 text-center animate-fade-in">
+                <h1 class="text-4xl md:text-5xl font-bold tracking-tight text-gray-900">
+                    Bienvenue {{ Auth::user()->name }}
+                </h1>
+                <p class="mt-8 text-xl text-gray-600 max-w-3xl mx-auto">
+                     Lancez une session de jeu du <strong>Digital Factory Challenge</strong> et collaborez avec les joueurs en temps réel.
+                </p>
+            
+                <div class="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="{{ route('session.start') }}" class="px-6 py-3 text-lg bg-[#3776fa] text-white font-medium rounded-full transition-all duration-300 hover:bg-[#2562b7]"> Lencer une partie </a>
+                    <button class="px-6 py-3 text-lg border border-gray-300 rounded-full text-gray-700 hover:bg-gray-100 transition-all duration-300">
+                        Découvrir notre jeu
+                    </button>
+                </div>
+            </section>
         </div>
-    </div>
+    </div>  
 </x-app-layout>

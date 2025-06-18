@@ -4,38 +4,38 @@ namespace App\View\Components\Atoms;
 
 use App\Models\Score;
 use App\Models\GameSession;
+use App\Models\ParametreSessionJoueur;
+use App\Models\SessionJoueur;
 use App\Models\User;
 use Livewire\Component;
 use Livewire\Attributes\On; 
 
 class ScoreDisplay extends Component
 {
-    public $score = 0;
-    public $playerId;
-    public $sessionId;
-    public $player;
-    public $session;
+    public $joinedPlayer;
+    public $cash;
 
     public function mount($playerId, $sessionId)
     {
-        $this->playerId = $playerId;
-        $this->sessionId = $sessionId;
-
-        $this->session = GameSession::where('id', $sessionId)
-            ->where('status', 'active')
+        $this->joinedPlayer = SessionJoueur::where('id_session',$sessionId)
+            ->where('id_player',$playerId)
             ->firstOrFail();
 
-        $this->player = User::findOrFail($playerId);
+        $this->cash = ParametreSessionJoueur::where('session_joueur_id', $this->joinedPlayer->id)
+            ->whereHas('parametre', function ($query) {
+                $query->where('nom', 'cash');
+            })
+            ->value('valeur') ?? 0;
     }
 
     #[On('scoreUpdated')]
-    public function refreshScore($newScore)
+    public function refreshScore()
     {
-        $this->score = Score::where('id_user', $this->player->id)
-            ->where('id_session', $this->session->id)
-            ->value('score') ?? 0;
-            
-        $this->score = $newScore;
+        $this->cash = ParametreSessionJoueur::where('session_joueur_id', $this->joinedPlayer->id)
+            ->whereHas('parametre', function ($query) {
+                $query->where('nom', 'cash');
+            })
+            ->value('valeur') ?? 0;
     }
 
     public function render()

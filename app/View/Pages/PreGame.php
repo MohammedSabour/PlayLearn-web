@@ -24,7 +24,6 @@ class PreGame extends Component
     // function to return to join  -- not working --
     public function redirectToJoin()
     {
-        dd('redirectToJoin called');
         return redirect()->to(route('join'));
     }
 
@@ -39,7 +38,7 @@ class PreGame extends Component
             $player = Auth::user();
             $playerId = $player->id;
 
-            if (!$this->session->players()->where('id_user', $player->id)->exists()) {
+            if (!$this->session->players()->where('id_player', $player->id)->exists()) {
                 $this->session->players()->attach($player->id, [
                     'player_name' => $this->player_name,
                     'is_guest' => false,

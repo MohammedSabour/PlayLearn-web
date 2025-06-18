@@ -57,9 +57,9 @@ class User extends Authenticatable
     /**
      * Relation : Un utilisateur (Master) peut créer plusieurs quiz.
      */
-    public function quizzes(): HasMany
+    public function jeu(): HasMany
     {
-        return $this->hasMany(Quiz::class, 'id_user');
+        return $this->hasMany(Jeu::class, 'id_master');
     }
 
     /**
@@ -77,20 +77,13 @@ class User extends Authenticatable
      */
     public function submissions(): HasMany
     {
-        return $this->hasMany(Submission::class, 'id_user');
-    }
-
-    /**
-     * Relation : Un utilisateur peut avoir plusieurs scores.
-     */
-    public function scores(): HasMany
-    {
-        return $this->hasMany(Score::class, 'id_user');
+        return $this->hasMany(Submission::class, 'id_player');
     }
 
     /**
      * Définir une règle pour éviter qu'un invité ait un email ou un mot de passe.
      */
+    
     public function setIsGuestAttribute($value)
     {
         $this->attributes['is_guest'] = $value;

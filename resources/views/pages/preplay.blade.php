@@ -36,24 +36,24 @@
 
     <!-- Main Content -->
     <div class="container mx-auto px-4">
-      <div class="max-w-3xl mx-auto space-y-6">
-
-        <!-- Player Card -->
-        <div class="glass p-6 animate-fade-in rounded-lg">
-          <div class="flex items-center space-x-4">
-
-            <div class="w-16 h-16 rounded-full border-2 border-blue-400 bg-blue-400/20 flex items-center justify-center text-blue-400 text-xl">
-              C
+        <div class="max-w-3xl mx-auto space-y-6">
+            <!-- Player Card -->
+            <div class="glass p-6 animate-fade-in rounded-lg">
+                <div class="flex items-center space-x-4">
+                        <div class="w-16 h-16 rounded-full border-2 border-blue-400 bg-blue-400/20 flex items-center justify-center text-blue-400 text-xl">
+                                {{ strtoupper(substr( $player->name, 0, 1)) }}
+                        </div>
+                        <div class="space-y-1">
+                            <h3 class="text-lg font-medium text-white">{{ $player->name }}</h3>
+                        </div>
+                </div>
             </div>
-
-            <div class="space-y-1">
-                <h3 class="text-lg font-medium text-white">{{ $player->name }}</h3>
-            </div>
-
-          </div>
         </div>
-      </div>
+
+        <div class=" mt-64 text-center">
+            <h1 class="text-white text-xl font-thin">Attendre que le maître de jeu démarre...</h1>
+        </div>
+
     </div>
 
-    
 </div>

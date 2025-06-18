@@ -2,40 +2,37 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Model;
 
 class Submission extends Model
 {
-    use HasFactory;
-
     protected $fillable = [
-        'id_session',
-        'id_user',
-        'id_question',
-        'id_selected_choice',
+        'choix_reponse_id',
         'is_correct',
+        'id_session_joueur',
         'submitted_at',
     ];
 
-    public function session(): BelongsTo
+    public function sessionjoueur(): BelongsTo
     {
-        return $this->belongsTo(GameSession::class, 'id_session');
+        return $this->belongsTo(SessionJoueur::class);
     }
 
-    public function player(): BelongsTo
+    public function joueur(): BelongsTo
     {
-        return $this->belongsTo(User::class, 'id_user');
+        return $this->sessionJoueur->player();
+    }
+    
+    public function choixReponse(): BelongsTo
+    {
+        return $this->belongsTo(ChoixReponse::class, 'choix_reponse_id');
+        
     }
 
-    public function question(): BelongsTo
+    public function Effet(): HasMany
     {
-        return $this->belongsTo(Question::class, 'id_question');
-    }
-
-    public function choice(): BelongsTo
-    {
-        return $this->belongsTo(Choice::class, 'id_selected_choice');
+        return $this->hasMany(Effet::class);
     }
 }

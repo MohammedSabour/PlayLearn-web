@@ -20,7 +20,13 @@ class Preplay extends Component
                 ->firstOrFail();
         $this->player = User::findOrfail($playerId);
     }
-    #[On('game-started')]
+
+    #[On('sessionFinished')] 
+    public function endSession()
+    {
+        $this->redirectRoute('join');
+    }
+    
     public function redirectToGame()
     {
         $this->redirectRoute('game.play', [
@@ -33,7 +39,9 @@ class Preplay extends Component
     {
         $this->session->refresh();
         
-        if ($this->session->status === 'active') {
+        if ($this->session->status === 'finished') {
+            $this->endSession();
+        }elseif ($this->session->status === 'active') {
             $this->redirectToGame();
         }
     }

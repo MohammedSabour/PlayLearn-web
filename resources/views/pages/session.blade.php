@@ -1,4 +1,4 @@
-<div wire:poll.1ms>
+<div wire:poll.1000ms="updateSessionJoueurs">
     <x-slot name="header">
         <div class="text-2xl font-bold text-quiz-primary">
             PlayLearn
@@ -49,12 +49,12 @@
                     <span class="text-sm font-medium">En attente des participants...</span>
                 </div>
                 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-                    @foreach($session->players as $player)
+                    @foreach($sessionJoueurs as $sessionJoueur)
                         <div class="bg-quiz-dark p-4 rounded-lg flex items-center gap-3">
                             <div class="w-10 h-10 rounded-full bg-quiz-primary flex items-center justify-center font-semibold text-white">
-                                {{ strtoupper(substr($player->name, 0, 1)) }}
+                                {{ strtoupper(substr($sessionJoueur->player_name, 0, 1)) }}
                             </div>
-                            <span class="font-medium text-white">{{ $player->name }}</span>
+                            <span class="font-medium text-white">{{  $sessionJoueur->player_name }}</span>
                         </div>
                     @endforeach
                 </div>
@@ -67,11 +67,6 @@
                 @if ($errorMessage)
                     <p class="p-2 text-red-500 text-xs italic">{{ $errorMessage }}</p>
                 @endif
-                <!-- <div class="text-center">
-                    <button class="text-sm text-muted-foreground hover:text-white transition-colors">
-                        Partager via...
-                    </button>
-                </div> -->
             </div>
         </div>
     </div>

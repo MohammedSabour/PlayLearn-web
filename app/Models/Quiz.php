@@ -9,26 +9,26 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Quiz extends Model
 {
-    use HasFactory;
-
+    protected $table = 'quizz';
     protected $fillable = [
-        'title',
+        'titre',
         'description',
-        'id_user'
+        'id_jeu',
+        'id_parametre',
     ];
 
-    public function master(): BelongsTo
+    public function jeu()
     {
-        return $this->belongsTo(User::class, 'id_user');
+        return $this->belongsTo(Jeu::class, 'id_jeu');
+    }
+
+    public function parametre() 
+    {
+        return $this->belongsTo(Parametre::class, 'id_parametre');
     }
 
     public function questions(): HasMany
     {
         return $this->hasMany(Question::class, 'id_quiz');
-    }
-
-    public function sessions(): HasMany
-    {
-        return $this->hasMany(GameSession::class, 'id_quiz');
-    }
+    } 
 }

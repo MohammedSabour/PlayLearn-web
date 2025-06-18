@@ -4,6 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
+        <link rel="icon" type="image/png" href="{{ asset('favicon.png') }}">
 
         <title>{{ config('app.name', 'Laravel') }}</title>
 
@@ -17,7 +18,7 @@
         <!-- Styles -->
         @livewireStyles
     </head>
-    <body>
+    <body class="bg-white min-h-screen">
         <livewire:components.organismes.nav-bar />
         
         <div class="font-sans text-gray-900 antialiased">

@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use App\Enums\QuestionType;
 
 class Question extends Model
 {
@@ -13,18 +14,22 @@ class Question extends Model
 
     protected $fillable = [
         'id_quiz',
+        'type',
         'question_text',
-        'points',
         'time',
+    ];
+
+    protected $casts = [
+        'type' => QuestionType::class,
     ];
 
     public function quiz(): BelongsTo
     {
-        return $this->belongsTo(Quiz::class, 'id_quiz');
+        return $this->belongsTo(Quiz::class);
     }
 
     public function choices(): HasMany
     {
-        return $this->hasMany(Choice::class, 'id_question');
+        return $this->hasMany(ChoixReponse::class, 'id_question');
     }
 }

@@ -4,6 +4,7 @@ namespace App\View\Components\Atoms;
 
 use Livewire\Component;
 use App\Models\GameSession;
+use App\View\Pages\Game;
 
 class EndSessionButton extends Component
 {
@@ -20,7 +21,11 @@ class EndSessionButton extends Component
 
         if ($session && $session->status !== 'finished') {
             $session->update(['status' => 'finished']);
-            return redirect()->route('filament.admin.resources.quizzes.index');
+            return redirect()->route('dashboard');
+        }
+        else
+        {
+            return redirect()->route('dashboard');
         }
     }
 

@@ -1,5 +1,3 @@
 <div>
-    <div class="mt-20">
-        <livewire:components.sections.hero />
-    </div>
+    <livewire:components.sections.hero />
 </div>
